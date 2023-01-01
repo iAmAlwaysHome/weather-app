@@ -22,10 +22,10 @@
 
 
 @media (max-device-width:1300px) {
-  .regular-website{
-    display:none;
+#regular-website{
+    opacity:0%;
   }
-  .small-website{
+#small-website{
     display:block;
   }
 
@@ -46,11 +46,8 @@
 } */
 
 @media (min-width: 1301px) {  
-  .regular-website{
+  #regular-website{
     display:block;
-  }
-  .small-website{
-    display:none;
   }
 }
 
