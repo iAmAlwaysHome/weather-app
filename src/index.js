@@ -146,7 +146,7 @@ function load() {
 
 function showPage() {
   displayDate();
-  searchCity("Moscow");
-
+  searchCity("Moscow");  
   document.getElementById("regular-website").style.display = "block";
+  document.body.classList.add('loaded');
 }
