@@ -132,42 +132,6 @@ function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-function badDims() {
-  var c = document.getElementById('wordcloud-canvas');
-  c.width = 170;
-  c.height = 75;
-  startRes();
-}
-
-window.addEventListener('load', function() {
-  startRes();
-}, false);
-function startRes() {
-  TagCanvas.Start('wordcloud-canvas', 'wordcloud-cities', {
-    fadeIn:0,
-    textColour: '#ffff',
-    textHeight: 45,
-    maxSpeed: 0.03,
-    minBrightness: 0.2,
-    depth: 0.5,
-    pulsateTo: 0.6,
-    initial: [0.03,-0.03],
-    decel: 0.98,
-    reverse: true,
-    imageScale: null,
-    clickToFront: 600,
-    pulsateTo: 0.2,
-    pulsateTime: 0.5,
-    outlineMethod: 'none',
-    outlineColour: 'none',
-    lock: 'x',
-    shape: 'hcylinder',
-    radiusX: 2.5,
-    wheelZoom: 0,
-    decel: 0.9
-  });
-}
-
 searchCity("Moscow");
 
 document.querySelector(`#user-input`).addEventListener(`submit`, display_city);
