@@ -151,8 +151,9 @@ function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+
 setInterval(formatDate(new Date()), 1000);
-searchCity("Ankara");
+//searchCity("Ankara");
 
 document.querySelector(`#user-input`).addEventListener(`submit`, display_city);
 document.querySelector(`#search-input`).addEventListener(`click`, display_city);

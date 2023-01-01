@@ -76,6 +76,7 @@
       <!--The weather app-->
       <div class="col-6 weather-app" >    
         
+         <!--Right side - City + weather description-->
         <div class="container" id="right-side-container">
           
           <div class="row g-2 rotation-right" id="right-side" >        
@@ -83,15 +84,15 @@
             <div class="col-6 right-side-text">
               
               <div class="text-center">
-                <h1 class="title-city" id="show-city"></h1>
+                <h1 class="title-city" id="show-city">Sorry! :(</h1>
               </div>
               <div class="col-9 text-center icon-weather">
-                <i class="fas icon-weather" id="icon-weather"></i>
+                <i class="fas fa-sun icon-weather" id="icon-weather"></i>
               </div>
               <div class="row g-2">
                 <div class="col-5"></div>
                 <div class="col-8 text-center rotate-text description-text" id="description-text">
-                  <h4 class="description text-center" id="description-weather"></h4>
+                  <h4 class="description text-center" id="description-weather">API is down</h4>
                 </div>
               </div>
               
@@ -100,27 +101,24 @@
           
         </div>
 
-        <!--Floor and Left side-->
+        <!--Floor and Left side - Temp C/F + wind + humidity + Forecast-->
         <div class="row g-2">   
           
           <div class="col-12">   
                   
             
-            <!--Left side-->
+            <!--Left side - Temp C/F + wind + humidity-->
             <div class="row g-3" id="left-side">
             
               <div class="col-2"></div>
               
-              <div class="col-10 temperature-city" >      
+              <div class="col-10 left-side-text" >      
                 
-                
-                
-                <!--Temperature-->
                 <div class="col-5">
                   <div class="relative-pos">
                     <div class="p-6 text-center">
                       <h1 class="temperature-number" id="temperature-grade">
-                        <span class="temperature-number" id="grade"></span>&degC
+                        <span class="temperature-number" id="grade">11</span>&degC
                       </h1>
                     </div>
                   </div>
@@ -132,8 +130,8 @@
                   <div class="relative-pos">
                     <div class="text-center details-temp">
                       <p>
-                        <i class="fas fa-tint detail-icon" id="humid-icon"></i><span class="percentage" id="humidity"></span>
-                        <i class="fas fa-wind detail-icon" id="wind-icon"></i><span class="percentage" id="wind"></span>
+                        <i class="fas fa-tint detail-icon" id="humid-icon"></i><span class="percentage" id="humidity">90%</span>
+                        <i class="fas fa-wind detail-icon" id="wind-icon"></i><span class="percentage" id="wind">8 km/h</span>
                       </p>
                     </div>
                   </div>
@@ -150,7 +148,7 @@
               
             </div>
 
-            <!--Floor-->
+            <!--Floor - Forecast -->
             <div class="row" id="floor">     
               
               <div class="col-3"></div>
@@ -162,55 +160,66 @@
                     
                     <div class="row">
                       
-                      <div class="col-4">
-                        <div class="p-3 text-center next-days-edit ">
-                          <h5 class="card-title" id="one">MON</h5>
-                          <i class="fas icon icon-days" id="iconNext"></i>
-                          <p class="card-text" id="max"></p>
+                        <div class="col-4 ">
+                          <div class="p-3 text-center next-days-edit color-cloud">
+                            <h5 class="card-title" id="one">MON</h5>
+                            <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
+                            <p class="card-text" id="max">
+                              <strong>31</strong>&deg 29&deg
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="p-3 text-center next-days-edit ">
-                          <h5 class="card-title" id="one">TUE</h5>
-                          <i class="fas  icon icon-days" id="iconNext"></i>
-                          <p class="card-text" id="max"></p>
+                        <div class="col-4">
+                          <div class="p-3 text-center next-days-edit color-cloud">
+                            <h5 class="card-title" id="one">TUE</h5>
+                            <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
+                            <p class="card-text" id="max">
+                              <strong>31</strong>&deg 29&deg
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="p-3 text-center next-days-edit ">
-                          <h5 class="card-title" id="one">WED</h5>
-                          <i class="fas  icon icon-days" id="iconNext"></i>
-                          <p class="card-text" id="max"></p>
+                        <div class="col-4">
+                          <div class="p-3 text-center next-days-edit color-cloud">
+                            <h5 class="card-title" id="one">WED</h5>
+                            <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
+                            <p class="card-text" id="max">
+                              <strong>31</strong>&deg 29&deg
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </div>
             
                     
                     <div class="row" >
                       <div class="col-4">
-                        <div class="p-3 text-center next-days-edit ">
-                          <h5 class="card-title" id="one">THU</h5>
-                          <i
-                            class="fas icon icon-days"
-                            id="iconNext"
-                          ></i>
-                          <p class="card-text" id="max"></p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="p-3 text-center next-days-edit ">
-                          <h5 class="card-title" id="one">FRI</h5>
-                          <i class="fas  icon icon-days" id="iconNext"></i>
-                          <p class="card-text" id="max"></p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="p-3 text-center next-days-edit ">
-                          <h5 class="card-title" id="one">SAT</h5>
-                          <i class="fas  icon icon-days" id="iconNext"></i>
-                          <p class="card-text" id="max"></p>
-                        </div>
-                      </div>
+                  <div class="p-3 text-center next-days-edit color-rain">
+                    <h5 class="card-title" id="one">THU</h5>
+                    <i
+                      class="fas fa-cloud-showers-heavy icon icon-days"
+                      id="iconNext"
+                    ></i>
+                    <p class="card-text" id="max">
+                      <strong>29</strong>&deg 27&deg
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="p-3 text-center next-days-edit color-clear">
+                    <h5 class="card-title" id="one">FRI</h5>
+                    <i class="fas fa-sun icon icon-days" id="iconNext"></i>
+                    <p class="card-text" id="max">
+                      <strong>31</strong>&deg 29&deg
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="p-3 text-center next-days-edit color-cloud">
+                    <h5 class="card-title" id="one">SAT</h5>
+                    <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
+                    <p class="card-text" id="max">
+                      <strong>31</strong>&deg 29&deg
+                    </p>
+                  </div>
+                </div>
                       
                     </div>   
                     

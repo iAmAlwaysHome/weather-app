@@ -131,7 +131,7 @@ div.move-content-up {
 
 #right-side{
   position: relative; 
-  left:-150px;
+  left:-350px;
   bottom:75px;
   width:1500px;
 }
@@ -240,12 +240,13 @@ div.relative-pos {
 #left-side{
   position: relative;
   width:990px;
-  height:480px;
+  height:500px;
   top:120px;
   transform: rotateX(345deg) rotateY(50deg) rotateZ(-2deg);
   margin-top: -32rem;
   margin-bottom: 1rem;
   position: relative;
+
 }
 
 h5.day {
@@ -292,6 +293,7 @@ div.next-day-edit {
 
 i.icon-days {
   font-size: 50px;
+  
 }
 
 p.five-days {
@@ -303,12 +305,12 @@ p.five-days {
   transform: rotate(180deg);
 }
 
-i.icon-weather {
-  font-size: 198px;
+#icon-weather {
+  font-size: 168px;
   margin: 4rem 0 4rem 8rem;
   position: relative;
   top:180px;
-  left:-10px;
+  left:40px;
   color: #faffff;
 }
 
@@ -361,7 +363,7 @@ h5.card-title {
 }
 
 p.card-text {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 div.main-precipitation {
@@ -417,8 +419,14 @@ p.created-by {
   zoom:80%;
 }
 
-.temperature-city{
+.left-side-text{
   position:relative;
-  top:150px;
-  zoom:75%
+  left:200px;
+  top:280px;
+  zoom:65%;
+
+}
+
+#forecastCell{
+  color:white
 }
