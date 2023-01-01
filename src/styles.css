@@ -3,16 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 * {
-  border: 1px solid transparent;
   margin-bottom: 0;
 }
 
-.small-website{
-  display: none;
+#small-website{
+  display:block;
 }
 
-.regular-website{
-  display:block;
+#regular-website{
+ 
+  display: none;
 }
 
 @media (max-device-width:1300px) {
@@ -107,8 +107,8 @@ button.user-location {
   font-weight: 700;
   letter-spacing: 3px;
   font-size: 45px;
-  color: rgb(89, 92, 95, 0.4);
-  background-color: rgb(250, 255, 255, 1.2);
+  color:  rgb(250, 255, 255, 0.9);
+  background-color: rgb(250, 255, 255, 0.2);
   box-shadow: 1px 1px 0 1px #f9f9fb, 5px 0 4px 0 rgb(89, 92, 95, 0.5), 8px -12px 0px  rgb(89, 92, 95, 0.05);
   transform: rotateZ(5deg);
 }
@@ -136,13 +136,14 @@ button.user-location {
   color: rgb(250, 255, 255);
   width: max-content;
   transition: 0.4s ease-in-out transform, 0.4s ease-in-out;
+  opacity:0.3
 }
 
 .forecast-cell:hover {
   transform: translate3d(0px, -16px, 0px);
   box-shadow:  -1px 0 28px 0 rgba(34, 33, 81, 0.01),
     54px 54px 28px -10px rgba(43, 42, 65, 0.1);
-    color:rgb(89, 92, 95, 0.35);
+    opacity:0.9
 }
 
 #description-text{
@@ -355,4 +356,9 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+}
+
+.video-container{
+  background-image:url("https://www.kimiaviation.com/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg");
+  background-size:100%;
 }

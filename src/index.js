@@ -132,11 +132,21 @@ function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-searchCity("Moscow");
-
 document.querySelector(`#user-input`).addEventListener(`submit`, display_city);
 document.querySelector(`#search-input`).addEventListener(`click`, display_city);
 document.querySelector(`#user-location`).addEventListener(`click`, getCurrentLocation);
 document.querySelector(`#fahrenheit`).addEventListener(`click`, getTempF);
 document.querySelector(`#celcius`).addEventListener(`click`, getTempC); 
 
+var myVar;
+
+function load() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  displayDate();
+  searchCity("Moscow");
+
+  document.getElementById("regular-website").style.display = "block";
+}

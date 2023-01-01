@@ -11,25 +11,20 @@
   <script src="https://kit.fontawesome.com/0dcbce5e8a.js" crossorigin="anonymous"></script>
   
   <link rel="stylesheet" href="src/styles.css" class="css"> 
+  
  </head>
  
- <body id="body" onload="displayDate()">
+ 
+ <body id="body" onload="load()">
   
-  <div class="small-website">
+  <div id="small-website">
     
     <div class="video-container">
 
       <video autoplay loop muted width="100%">
-          <source src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&amp;profile_id=175" type="video/mp4" />
-      </video>                
-      <div >
-          <img src="https://www.kimiaviation.com/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg" alt="clouds">
-      </div>
-  </div>
-    
-  </div>
+          <source src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&amp;profile_id=175" type="video/mp4" />  </video>     </div>  </div>
   
-  <div class="regular-website">
+  <div id="regular-website">
     
  
     
@@ -42,9 +37,9 @@
       
    <!--Isometric-box-right-side: city, icon, weather description-->
    <div class="container" style:"max-width: 1000px;">
-    <div class="row g-2" style="position: relative; left:-60px; margin-top: 3rem; transform: rotateX(30deg) rotateY(55deg);">
+    <div class="row g-2" style="position: relative; left:-60px; margin-top: 10rem; transform: rotateX(30deg) rotateY(55deg);">
      <div class="col-6"></div>
-     <div class="col-6" style="position:relative; left:120px;">
+     <div class="col-6" style="position:relative; left:60px; bottom: 50px;">
       
       
       <div class="col-9 text-center">  <i class="fas fa-cloud-rain" id="weather-icon"></i> </div>
@@ -67,7 +62,7 @@
           <div class="col-2"></div>       
           <div class="col-10">          
             <!--Date-->  
-            <div class="col-5"> <div class="text-center p-2" style="border-radius: 10px; background-color: none;">  <h3 id="date"></h3>  </div> </div>   
+            <div class="col-5"> <div class="text-center p-2" style="border-radius: 10px; background-color: none;">  <h3 id="date">API limit reached</h3>  </div> </div>   
             <!--temp--> 
             <div class="col-5">  <div class="p-6 text-center" style="position: relative;"> <h1 id="today-temp">Error</h1></div>  </div>          
             <!--hum wind-->  
