@@ -15,7 +15,7 @@
   display:block;
 }
 
-@media only screen and (max-device-width: 1450px) {
+@media (max-device-width:1300px) {
   .regular-website{
     display:none;
   }
@@ -29,7 +29,21 @@
   }
 }
 
-@media only screen and (min-width: 1451px) {  
+/*
+@media (min-width:800px) and (max-width:1300px) {
+  .regular-website{
+    display:block;
+  }
+  .small-website  {
+    display:none;
+  }  
+  .hide-for-small-website{
+    position:relative;
+    left:-100px
+  }
+} */
+
+@media (min-width: 1301px) {  
   .regular-website{
     display:block;
   }
@@ -41,11 +55,6 @@
 html {
   height: max-content;
   margin: 0 auto;
-}
-
-div.search-input {
-  zoom: 200%;
-  width: 35rem;
 }
 
 #humidity, #wind{
@@ -75,8 +84,6 @@ body {
   overflow:hidden;
 }
 
-
-
 button.btn-search {
   border-radius: 0 10px 10px 0;
 }
@@ -85,16 +92,6 @@ button.user-location {
   position: relative;
   left: 1rem;
   border-radius: 30px;
-}
-
-div.temp-up {
-  position: relative;
-  top: -4rem;
-}
-
-div.date-down {
-  position: relative;
-  top: 4rem;
 }
 
 #displayed-city-name {
@@ -146,10 +143,6 @@ div.date-down {
   box-shadow:  -1px 0 28px 0 rgba(34, 33, 81, 0.01),
     54px 54px 28px -10px rgba(43, 42, 65, 0.1);
     color:rgb(89, 92, 95, 0.35);
-}
-
-div.moving-main-icon {
-  position: relative;
 }
 
 #description-text{
