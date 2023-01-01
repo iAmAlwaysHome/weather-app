@@ -10,12 +10,10 @@ function showSearchedCelcius(response) {
   tempNumber.innerHTML = `${temperatureSearched}&degC`;
 }
 
-// Axios information + Calling temperature for fahrenheit
 function searchFahrenheit(event) {
   event.preventDefault();
   let citySearched = document.querySelector(`#show-city`).textContent;
 
-  // axios API (for fahrenheit)
   let apiKey= '57821c3b75b60c68ecd1a8d0dd1aa8d3';
   let mainLink = `https://api.openweathermap.org/data/2.5/weather?`;
   let units = `imperial`;
@@ -25,7 +23,6 @@ function searchFahrenheit(event) {
   axios.get(`${apiUrl}`).then(showSearchedFahrenheit);
 }
 
-// Axios information + Calling temperature for Celcius
 function searchCelcius(event) {
   event.preventDefault();
   let citySearched = document.querySelector(`#show-city`).textContent;
@@ -40,7 +37,8 @@ function searchCelcius(event) {
   axios.get(`${apiUrl}`).then(showSearchedCelcius);
 }
 
-function formatDate(date) {
+function formatDate() {
+  const date = new Date();
   let days = [ `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`];
   let day = days[date.getDay()];
   let hours = date.getHours();
@@ -48,6 +46,7 @@ function formatDate(date) {
   let minutes = date.getMinutes();
   if (minutes < 10) minutes = `0${minutes}`;
   document.querySelector(`#date`).innerHTML = `${day} ${hours}:${minutes}`;
+  setTimeout(formatDate, 1000);
 }
 
 function getForecastDay(timestamp) {
@@ -151,8 +150,6 @@ function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-
-setInterval(formatDate(new Date()), 1000);
 searchCity("Ankara");
 
 document.querySelector(`#user-input`).addEventListener(`submit`, display_city);

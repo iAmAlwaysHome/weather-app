@@ -111,7 +111,7 @@ div.temp-up {
 }
 
 div.details-temp {
-  font-size: 35px;
+  font-size: 38px;
 }
 
 div.date-down {
@@ -135,7 +135,8 @@ div.date-down {
 div.right-side-text { 
   position:relative;
   right:200px;
-  zoom:75%
+  zoom:73%;
+  top:50px;
 }
 
 h1.title-city {
@@ -158,7 +159,7 @@ h1.title-city {
 }
 
 h3.today-date {
-  font-size: 35px;
+  font-size: 115px;
   border-radius: 20px;
   color: #faffff;
   font-family: "Merriweather Sans", sans-serif;
@@ -447,7 +448,8 @@ svg {
 }
 
 #show-city{
-  display:inline;
+  position:relative;
+  transform: rotateZ(0.5deg);
 }
 
 .weather-description{

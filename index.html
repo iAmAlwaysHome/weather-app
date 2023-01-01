@@ -21,7 +21,7 @@
    
   </head>
   
-  <body>
+  <body onload="formatDate()">
 
     <div class="row scene" >
        
@@ -85,7 +85,7 @@
       <!--The weather app-->
       <div class="col-6 weather-app" >    
         
-         <!--Right side - Temp C/F + wind + humidity -->
+         <!--Right side - Temp C/F + wind + humidity +  City -->
         <div class="container" id="right-side-container">
           
           <div class="row g-2 rotation-right" id="right-side" >        
@@ -122,13 +122,13 @@
           
         </div>
 
-        <!--Floor and Left side -  City + weather description + Forecast-->
+        <!--Floor and Left side -  weather description + Forecast-->
         <div class="row g-2">   
           
           <div class="col-12">   
                   
             
-            <!--Left side - City + weather description-->
+            <!--Left side -  weather description-->
             <div class="row g-3" id="left-side">            
              
    
