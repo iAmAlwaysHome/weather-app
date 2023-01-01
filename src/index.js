@@ -8,14 +8,14 @@ function displayTempC(response) {
 
 function getTempF(event) {
   event.preventDefault();
-  let apiKey= '8402ccd9e55983fce71eeeaa1d2bd1fc';
+  let apiKey= 'b35c686ba9565ba0ab254c2230937552';
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${document.querySelector(`#displayed-city-name`).textContent}&units=imperial&appid=${apiKey}`;
   axios.get(`${apiUrl}`).then(displayTempF);
 }
 
 function getTempC(event) {
   event.preventDefault();
-  let apiKey= '8402ccd9e55983fce71eeeaa1d2bd1fc';
+  let apiKey= 'b35c686ba9565ba0ab254c2230937552';
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${document.querySelector(`#displayed-city-name`).textContent}&units=metric&appid=${apiKey}`;
   axios.get(`${apiUrl}`).then(displayTempC);
 }
@@ -83,7 +83,7 @@ function showSearchedCity(apiResponse) {
   document.querySelector(`#wind`).innerHTML = `${Math.round((apiResponse.data.wind.speed * 18) / 5)} km/h`;
 
   //forecast data
- let apiKey= '8402ccd9e55983fce71eeeaa1d2bd1fc';
+ let apiKey= 'b35c686ba9565ba0ab254c2230937552';
  axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${apiResponse.data.coord.lat}&lon=${apiResponse.data.coord.lon}&units=metric&appid=${apiKey}`).then(generateForecast);
 
  //img
@@ -112,7 +112,7 @@ function showSearchedCity(apiResponse) {
 
 //is called when #user-input #search-input are clicked
 function searchCity(city) {  
-  let apiKey = "8402ccd9e55983fce71eeeaa1d2bd1fc";
+  let apiKey = "b35c686ba9565ba0ab254c2230937552";
   axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`, { validateStatus: false }).then(showSearchedCity);
 }
 
@@ -123,7 +123,7 @@ function display_city(event) {
 
 //is called when #user-location is clicked
 function showPosition(position) {
-  let apiKey = `8402ccd9e55983fce71eeeaa1d2bd1fc`;
+  let apiKey = `b35c686ba9565ba0ab254c2230937552`;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(`${apiURL}`).then(showSearchedCity);
 }
