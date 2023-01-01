@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 * {
   border: 1px solid transparent;
   margin-bottom: 0;
@@ -96,19 +100,19 @@ div.date-down {
 #displayed-city-name {
 
   position: relative;
-  width:430px;
+  width:420px;
   border-radius: 20px;
-  margin-left: 5rem;
-  margin-top: 1rem;
+  margin-left: 9rem;
+  margin-top: 10rem;
   text-transform: uppercase;
-  padding: 1.1rem;
+  padding: 0.3rem;
   font-family: "Merriweather Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 3px;
   font-size: 45px;
   color: rgb(89, 92, 95, 0.4);
   background-color: rgb(250, 255, 255, 1.2);
-  box-shadow: 1px 1px 0 1px #f9f9fb, 5px 0 4px 0 rgb(89, 92, 95, 0.1), 8px -12px 0px  rgb(89, 92, 95, 0.1);
+  box-shadow: 1px 1px 0 1px #f9f9fb, 5px 0 4px 0 rgb(89, 92, 95, 0.5), 8px -12px 0px  rgb(89, 92, 95, 0.05);
   transform: rotateZ(5deg);
 }
 
@@ -141,6 +145,7 @@ div.date-down {
   transform: translate3d(0px, -16px, 0px);
   box-shadow:  -1px 0 28px 0 rgba(34, 33, 81, 0.01),
     54px 54px 28px -10px rgba(43, 42, 65, 0.1);
+    color:rgb(89, 92, 95, 0.35);
 }
 
 div.moving-main-icon {
@@ -148,21 +153,21 @@ div.moving-main-icon {
 }
 
 #description-text{
-  font-size: 125px;
-  color:  rgba(249, 249, 249, 0.3);
-  /*
-  padding: 3rem;*/
+  font-size: 185px;
+  color:  rgba(249, 249, 249);
+  font-family: 'Tangerine', cursive;
   text-transform: capitalize;
-  
+  font-weight: bold;
+  position:relative;
+  top:180px;
 }
 
 #description-block {
-  border-radius: 20px;
-  padding: 0.5rem;
+  border-radius: 1px; 
   width: max-content;
   transform: rotateX(10deg) rotateY(21deg);
   position: relative;
-  top: 1rem;
+  top: 1.5rem;
 }
 
 #today-temp{
@@ -213,11 +218,13 @@ p.five-days {
 
 #weather-icon {
   font-size: 280px;
-  margin: 2rem 0 0rem 12rem;
+  margin: 0rem 0 0rem 12rem;
   color: rgb(250, 255, 255, 0.6);
   text-shadow: 
       -1px -1px 1px rgb(89, 92, 95, 0.7), 
       2px 2px 1px rgb(54, 54, 54, 0.3);
+  position:relative;
+  top:160px;
   
 }
 

@@ -155,7 +155,6 @@ function startRes() {
     decel: 0.98,
     reverse: true,
     imageScale: null,
-    fadeIn: 1000,
     clickToFront: 600,
     pulsateTo: 0.2,
     pulsateTime: 0.5,
