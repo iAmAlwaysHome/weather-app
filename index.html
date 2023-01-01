@@ -1,248 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width" />
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="src/styles.css" class="css" />
+  <title>Weather Land-page</title>
+  <script src="https://kit.fontawesome.com/af5476175e.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700;800&family=Open+Sans&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Merriweather+Sans:wght@300;400;600;700;800&family=Open+Sans&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+ 
+ </head>
+ 
+ <body id="body" onload="displayDate() " class="background-3">
+  
+  <div class="small-website"></div>
+  
+  <div class="regular-website">
     
-    <title>weather-app</title>
+ 
     
-    <link rel="stylesheet" href="src/styles.css" class="css" />    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>    
+  <div class="row">    
     
-    <script src="https://kit.fontawesome.com/af5476175e.js" crossorigin="anonymous"></script>
-        
-    <!--fix fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700;800&family=Open+Sans&display=swap"rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Merriweather+Sans:wght@300;400;600;700;800&family=Open+Sans&display=swap" rel="stylesheet">    
+    
+    <!--Isometric-box-right-side: city, icon, weather description-->
+    <!--Isometric-box-left-side and floor: temp hum wind C/F  and forecast-->
+    <div class="col-8">
+      
+   <!--Isometric-box-right-side: city, icon, weather description-->
+   <div class="container" style:"max-width: 1000px;">
+    <div class="row g-2" style="position: relative; margin-top: 6rem; transform: rotateX(30deg) rotateY(55deg);">
+     <div class="col-6"></div>
+     <div class="col-6" style="position:relative; left:120px;">
+      
+      
+      <div class="col-9 text-center">  <i class="fas fa-cloud-rain" id="weather-icon"></i> </div>
+      <div class="row g-2"> <div class="col-3"></div>  
+      <div class="col-8 " id="description-block">  <h4 id="description-text"></h4> </div> </div>
+      <div class="text-center" > <h1 id="displayed-city-name">" "</h1> </div>
+      
+     </div>
+    </div>
+   </div>
    
-  </head>
+   <!--Isometric-box-left-side and floor: temp hum wind C/F  and forecast-->
+   <div class="row g-2">
+    <div class="col-12">
+      
+      <!--Isometric-box-left-side and floor: temp hum wind C/F-->
+      <div class="container" style="max-width: 100rem; margin-top: -32rem;  margin-bottom: 1rem; position: relative;">
+        <div class="row g-3" style="  position: relative; transform: rotateX(345deg) rotateY(53deg);">
+        
+          <div class="col-2"></div>       
+          <div class="col-10">          
+            <!--Date-->  
+            <div class="col-5"> <div class="text-center p-2" style="border-radius: 10px; background-color: none;">  <h3 id="date"></h3>  </div> </div>   
+            <!--temp--> 
+            <div class="col-5">  <div class="p-6 text-center" style="position: relative;"> <h1 id="today-temp">"  "</h1></div>  </div>          
+            <!--hum wind-->  
+            <div class="col-5"> 
+              <div class="text-center" style="position:relative; font-size: 35px;">
+              <p> <i class="fas fa-tint" id="humid-icon"></i> <span id="humidity"> 56% </span>
+                <i class="fas fa-wind" id="wind-icon"></i> <span id="wind">16 km/h</span> </p> </div> </div>
+            
+            <!--C/F --> 
+            <div class="row g-2">          
+            <div class="col-5 text-center">
+              <button class="btn btn-lg btn-outline-light " type="button" id="celcius"> &degC </button>
+              <button class="btn btn-lg btn-outline-light " type="button" id="fahrenheit"> &degF </button> </div> </div>        
+          </div>       
+        </div>      
+      </div> 
+         
+      <!--Forecast-->
+      <div class="row">
+        
+        <div class="col-3"></div>        
+        <div class="col-6">
+          <div class="container-fluid" id="forecastCells">
+            
+            <div class="row">
+                      
+              <div class="col-4 "> <div class="p-3 text-center  forecast-cell">
+                  <h5 id="one">MON</h5> <i class="fas fa-cloud icon " id="forecastIcon"></i> <p  id="max"> <strong>31</strong>&deg 9&deg </p> </div></div>
+                  
+              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
+                  <h5  id="one">TUE</h5> <i class="fas fa-cloud icon" id="forecastIcon"></i>  <p  id="max"> <strong>1</strong>&deg 9&deg </p> </div> </div>
+                  
+              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
+                  <h5  id="one">WED</h5> <i class="fas fa-cloud icon" id="forecastIcon"></i> <p  id="max"> <strong>1</strong>&deg 9&deg </p> </div> </div>
   
-  <body onload="formatDate()">
-
-    <div class="row scene" >
+          
+            <div class="row" >
+              
+              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
+                  <h5  id="one">THU</h5> <i class="fas  fa-cloud icon" id="forecastIcon" ></i>  <p  id="max"> <strong>9</strong>&deg 27&deg </p> </div> </div>
+                  
+              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
+                  <h5  id="one">FRI</h5> <i class="fas  fa-cloud icon" id="forecastIcon"></i> <p  id="max"> <strong>1</strong>&deg 29&deg  </p> </div> </div>
+              
+              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
+                  <h5  id="one">SAT</h5> <i class="fas fa-cloud icon" id="forecastIcon"></i> <p  id="max"> <strong>1</strong>&deg 9&deg </p>  </div>  </div> 
+                
+          </div> </div> </div> </div> </div> </div> </div> </div>    
+          
+    <div class="col-1 "></div>
+     
+    <div class="col-3 ">
+      
+      <div class="row">
+      <form id="user-input" >
+        <div class="container" style=" padding-bottom: 20rem; zoom:2.0; width: max-content;">
+         <div class="row content" style="position: relative;  top: 15rem; right: 20rem;  margin-bottom: 2rem; ">
+          <div class="col-5 user-input" style="width: max-content;">
+           <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter a city! :)" id="enter-city">
+            <div class="input-group-append">
+             <button class="btn btn-lg btn-outline-light btn-search" type="button" id="search-input"> <i class="fas fa-search-location location"></i></button>
+            </div>
+            <div class="col-sm">
+             <button class="btn btn-lg btn-outline-light user-location" type="button" id="user-location"> <i class="fas fa-street-view local"></i></button>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </form>
+      </div>
        
-        <!--Left menu-->
-      <div class="col-6" id="menu">
+      <div class="row">
+   
+        <div class="container">
         
+        <div>
+          <canvas id=wordcloud-canvas width="1000" height="600"  class="fade-in"></canvas>
+        </div>
+        
+        
+        <ul id="wordcloud-cities">
+          <li><a href="#" data-weight="1000">Hong Kong</a></li>
+          <li><a href="#" data-weight="200">Bangkok</a></li>
+          <li><a href="#" data-weight="300">Singapore</a></li>
+          <li><a href="#" data-weight="1000">Mumbai</a></li>
+          <li><a href="#" data-weight="200">Seoul</a></li>
+          <li><a href="#" data-weight="300">Miami</a></li>          
+          <li><a href="#" data-weight="100">Florence</a></li>
+          <li><a href="#" data-weight="200">Beijing</a></li>
+          <li><a href="#" data-weight="300">Vancouver</a></li>
+          <li><a href="#" data-weight="100">Kyoto</a></li>
+          <li><a href="#" data-weight="200">Lima</a></li>
+          <li><a href="#" data-weight="300">Abu Dhabi</a></li>
+          <li><a href="#" data-weight="100">Rhodes</a></li>
+          
+        </ul>    
   
-        
-      <div class="text-center p-2 today-date">
-          <h3 class="today-date" id="date"></h3>
       </div>
         
-      <form id="user-input">
-        <div class="container row-margin">
-          <div class="row content justify-content-center row-margin">
-            <div class="col-5 user-input">
-              <div class="input-group">
-                
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter a city..."
-                  id="enter-city"
-                />
-                
-                <!--Search side buttons (location)-->
-                <div class="input-group-append">
-                  <button
-                    class="btn btn-lg btn-outline-light btn-search"
-                    type="button"
-                    id="search-input"
-                  >
-                    <i class="fas fa-search-location location"></i>
-                  </button>
-                </div>
-                <!--Main / actual location-->
-                <div class="col-sm">
-                  <button
-                    class="btn btn-lg btn-outline-light actual-location"
-                    type="button"
-                    id="actual-location"
-                  >
-                    <i class="fas fa-street-view local"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-            
-      <div class="row f-c-but">
-        <div class="col-2 ">
-          <button class="btn btn-lg btn-outline-light celsius-fahrenheit" type="button" id="celcius"> &degC</button>
-          <button class="btn btn-lg btn-outline-light celsius-fahrenheit" type="button" id="fahrenheit"> &degF</button>
-        </div>              
-      </div>  
-      
-      </div> 
+     </div>
+
   
-      <!--The weather app-->
-      <div class="col-6 weather-app" >    
-        
-         <!--Right side - Temp C/F + wind + humidity +  City -->
-        <div class="container" id="right-side-container">
-          
-          <div class="row g-2 rotation-right" id="right-side" >        
-            <div class="col-6"></div>    
-            
-            
-            <div class="col-6 right-side-text">
-              
-              <div class="col-5">              
-                  <div class="p-6 text-center">
-                    <h1 class="temperature-number" id="temperature-grade"> <span class="temperature-number" id="grade">11</span>&degC </h1>
-                  </div>
-              </div>           
-              
-              <div class="col-6"></div>
-              <div class="col-2"></div>
-              
-              <div class="col-6">
-                <div class="relative-pos">
-                  <div class="text-center details-temp">
-                    <p>
-                      <i class="fas fa-tint detail-icon" id="humid-icon"></i><span class="percentage" id="humidity">90%</span>
-                      <i class="fas fa-wind detail-icon" id="wind-icon"></i><span class="percentage" id="wind">8 km/h</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              
-              
-            </div>
-            <div class="col-6"> <h1 class="text-center title-city" id="show-city">Sorry! :(</h1></div>       
-          </div>
-          
-        </div>
-
-        <!--Floor and Left side -  weather description + Forecast-->
-        <div class="row g-2">   
-          
-          <div class="col-12">   
-                  
-            
-            <!--Left side -  weather description-->
-            <div class="row g-3" id="left-side">            
-             
+    </div> 
    
-              
-              <div class="col-10 iso-box-left-side" >     
-                
-                <div class="left-side-text">         
-                
-                    <div class="col icon-weather"> <i class="fas fa-sun icon-weather" id="icon-weather"></i> </div>
-                                        
-                    <div class="row  weather-description"> 
-                      
-                      <div class="col-6 description-text" id="description-text"> <h4 class="description" id="description-weather">API err</h4> </div>   
-                                          
-                    </div>       
-                    
-                </div>
-                
-              </div>
-              
-            </div>
+    <div class="col-1 "></div>
 
-            <!--Floor - Forecast -->
-            <div class="row" id="floor">     
-              
-              <div class="col-3"></div>
-              
-              <div class="col-6">
-                
-                <div class="container-fluid position-next-days" id="forecastCell" >                                           
-
-                    
-                    <div class="row">
-                      
-                        <div class="col-4 ">
-                          <div class="p-3 text-center next-days-edit color-cloud">
-                            <h5 class="card-title" id="one">MON</h5>
-                            <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
-                            <p class="card-text" id="max">
-                              <strong>31</strong>&deg 29&deg
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="p-3 text-center next-days-edit color-cloud">
-                            <h5 class="card-title" id="one">TUE</h5>
-                            <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
-                            <p class="card-text" id="max">
-                              <strong>31</strong>&deg 29&deg
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="p-3 text-center next-days-edit color-cloud">
-                            <h5 class="card-title" id="one">WED</h5>
-                            <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
-                            <p class="card-text" id="max">
-                              <strong>31</strong>&deg 29&deg
-                            </p>
-                          </div>
-                        </div>
-            
-                    
-                    <div class="row" >
-                      <div class="col-4">
-                  <div class="p-3 text-center next-days-edit color-rain">
-                    <h5 class="card-title" id="one">THU</h5>
-                    <i
-                      class="fas fa-cloud-showers-heavy icon icon-days"
-                      id="iconNext"
-                    ></i>
-                    <p class="card-text" id="max">
-                      <strong>29</strong>&deg 27&deg
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="p-3 text-center next-days-edit color-clear">
-                    <h5 class="card-title" id="one">FRI</h5>
-                    <i class="fas fa-sun icon icon-days" id="iconNext"></i>
-                    <p class="card-text" id="max">
-                      <strong>31</strong>&deg 29&deg
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="p-3 text-center next-days-edit color-cloud">
-                    <h5 class="card-title" id="one">SAT</h5>
-                    <i class="fas fa-cloud icon icon-days" id="iconNext"></i>
-                    <p class="card-text" id="max">
-                      <strong>31</strong>&deg 29&deg
-                    </p>
-                  </div>
-                </div>
-                      
-                    </div>   
-                    
-                </div>
-                
-                
-              </div>
-              
-            </div>
-              
-            
-          </div>
-          
-        </div>   
-        
-      </div>  
-      
-      
-    </div>
-        
-   <script src="src/index.js"></script>
-  </body>
+  </div>
+  
+  
+  <script src='http://www.goat1000.com/tagcanvas.min.js'></script>
+  <script src="src/index.js"></script>
+  
+ </body>
 </html>

@@ -1,43 +1,26 @@
-function showSearchedFahrenheit(response) {
-  let temperatureSearched = Math.round(response.data.main.temp);
-  let tempNumber = document.querySelector(`#temperature-grade`);
-  tempNumber.innerHTML = `${temperatureSearched}&degF`;
+function displayTempF(response) {
+  document.querySelector(`#today-temp`).innerHTML = `${Math.round(response.data.main.temp)}&degF`;
 }
 
-function showSearchedCelcius(response) {
-  let temperatureSearched = Math.round(response.data.main.temp);
-  let tempNumber = document.querySelector(`#temperature-grade`);
-  tempNumber.innerHTML = `${temperatureSearched}&degC`;
+function displayTempC(response) {
+  document.querySelector(`#today-temp`).innerHTML = `${Math.round(response.data.main.temp)}&degC`;
 }
 
-function searchFahrenheit(event) {
+function getTempF(event) {
   event.preventDefault();
-  let citySearched = document.querySelector(`#show-city`).textContent;
-
-  let apiKey= '57821c3b75b60c68ecd1a8d0dd1aa8d3';
-  let mainLink = `https://api.openweathermap.org/data/2.5/weather?`;
-  let units = `imperial`;
-
-  let apiUrl = `${mainLink}q=${citySearched}&units=${units}&appid=${apiKey}`;
-
-  axios.get(`${apiUrl}`).then(showSearchedFahrenheit);
+  let apiKey= '8402ccd9e55983fce71eeeaa1d2bd1fc';
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${document.querySelector(`#displayed-city-name`).textContent}&units=imperial&appid=${apiKey}`;
+  axios.get(`${apiUrl}`).then(displayTempF);
 }
 
-function searchCelcius(event) {
+function getTempC(event) {
   event.preventDefault();
-  let citySearched = document.querySelector(`#show-city`).textContent;
-
-  // axios API (for fahrenheit)
-  let apiKey= '57821c3b75b60c68ecd1a8d0dd1aa8d3';
-  let mainLink = `https://api.openweathermap.org/data/2.5/weather?`;
-  let units = `metric`;
-
-  let apiUrl = `${mainLink}q=${citySearched}&units=${units}&appid=${apiKey}`;
-
-  axios.get(`${apiUrl}`).then(showSearchedCelcius);
+  let apiKey= '8402ccd9e55983fce71eeeaa1d2bd1fc';
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${document.querySelector(`#displayed-city-name`).textContent}&units=metric&appid=${apiKey}`;
+  axios.get(`${apiUrl}`).then(displayTempC);
 }
 
-function formatDate() {
+function displayDate() {
   const date = new Date();
   let days = [ `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`];
   let day = days[date.getDay()];
@@ -46,7 +29,7 @@ function formatDate() {
   let minutes = date.getMinutes();
   if (minutes < 10) minutes = `0${minutes}`;
   document.querySelector(`#date`).innerHTML = `${day} ${hours}:${minutes}`;
-  setTimeout(formatDate, 1000);
+  setTimeout(displayDate, 1000);
 }
 
 function getForecastDay(timestamp) {
@@ -54,7 +37,7 @@ function getForecastDay(timestamp) {
   return weekDay[(new Date(timestamp * 1000)).getDay()];
 }
 
-//8 days forecast
+//6 days forecast
 function generateForecast(response) {
   let forecastRow = `<div class="row text-center g-2">`;
   //Add each day to forecastRow
@@ -81,67 +64,66 @@ function generateForecast(response) {
       addingElement = `fa-smog`;
       else if (forecastDay.weather[0].main === `Thunderstorm`) 
         addingElement = `fa-bolt`;
-      forecastRow += `<div class="col-4" > <div class="p-3 text-center next-days-edit color-forecast-cell">
-        <h5 class="card-title" id="one" style="min-width:120px; min-height:60px;">${getForecastDay(forecastDay.dt)}</h5> <i class="fas ${addingElement} icon icon-days" id="iconNext"></i>
-        <p class="card-text" id="max"><strong>${Math.round(forecastDay.temp.max)}</strong>&deg ${Math.round(forecastDay.temp.min)}&deg</p></div></div>`;
+      forecastRow += `<div class="col-4" > <div class="p-3 text-center forecast-cell">
+      <h5 id="one">${getForecastDay(forecastDay.dt)}</h5> <i class="fas ${addingElement} icon " id="forecastIcon"></i>
+      <p id="max"><strong>${Math.round(forecastDay.temp.max)}</strong>&deg ${Math.round(forecastDay.temp.min)}&deg</p></div></div>`;
     }});
-  document.querySelector(`#forecastCell`).innerHTML = forecastRow + `</div>`;
+  document.querySelector(`#forecastCells`).innerHTML = forecastRow + `</div>`;
 }
 
-//is called when #user-input #search-input and #actual-location are clicked
+//is called when #user-input #search-input and #user-location are clicked
 function showSearchedCity(apiResponse) {
   
   if (apiResponse !== undefined && apiResponse.data !== undefined && apiResponse.data.main !== undefined ) {
   
-  document.querySelector(`#show-city`).innerHTML = document.querySelector(`#enter-city`).value;
-  document.querySelector(`#show-city`).innerHTML = apiResponse.data.name;  
-  document.querySelector(`#temperature-grade`).innerHTML = `${Math.round(apiResponse.data.main.temp)}&degC`;
-  document.querySelector(`#description-weather`).innerHTML = apiResponse.data.weather[0].main;
+  document.querySelector(`#displayed-city-name`).innerHTML = apiResponse.data.name;  
+  document.querySelector(`#today-temp`).innerHTML = `${Math.round(apiResponse.data.main.temp)}&degC`;
+  document.querySelector(`#description-text`).innerHTML = apiResponse.data.weather[0].main;
   document.querySelector(`#humidity`).innerHTML = `${apiResponse.data.main.humidity}%`;
   document.querySelector(`#wind`).innerHTML = `${Math.round((apiResponse.data.wind.speed * 18) / 5)} km/h`;
 
   //forecast data
- let apiKey= '57821c3b75b60c68ecd1a8d0dd1aa8d3';
+ let apiKey= '8402ccd9e55983fce71eeeaa1d2bd1fc';
  axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${apiResponse.data.coord.lat}&lon=${apiResponse.data.coord.lon}&units=metric&appid=${apiKey}`).then(generateForecast);
 
-  if (document.querySelector(`#description-weather`).textContent === `Clear`) 
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-sun icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Rain`) 
-    document.querySelector(`#icon-weather`).setAttribute(`class`,`fas fa-cloud-showers-heavy icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Clouds`)  
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-cloud icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Thunderstorm`) 
-   document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-bolt icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Haze`) 
-   document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-smog icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Mist`) 
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-smog icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Drizzle`) 
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-cloud-rain icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Smoke`)
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-smog icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Snow`) 
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-snowflake icon-weather`);
-  else if (document.querySelector(`#description-weather`).textContent === `Fog`) 
-    document.querySelector(`#icon-weather`).setAttribute(`class`, `fas fa-smog icon-weather`);
+ //img
+  if (document.querySelector(`#description-text`).textContent === `Clear`) 
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-sun weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Rain`) 
+    document.querySelector(`#weather-icon`).setAttribute(`class`,`fas fa-cloud-showers-heavy weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Clouds`)  
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-cloud weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Thunderstorm`) 
+   document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-bolt weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Haze`) 
+   document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-smog weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Mist`) 
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-smog weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Drizzle`) 
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-cloud-rain weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Smoke`)
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-smog weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Snow`) 
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-snowflake weather-icon`);
+  else if (document.querySelector(`#description-text`).textContent === `Fog`) 
+    document.querySelector(`#weather-icon`).setAttribute(`class`, `fas fa-smog weather-icon`);
   }
 }
 
 //is called when #user-input #search-input are clicked
 function searchCity(city) {  
-  let apiKey = "57821c3b75b60c68ecd1a8d0dd1aa8d3";
+  let apiKey = "8402ccd9e55983fce71eeeaa1d2bd1fc";
   axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`, { validateStatus: false }).then(showSearchedCity);
 }
 
 function display_city(event) {
   event.preventDefault();
-  let city = document.querySelector("#enter-city").value;
-  searchCity(city);
+  searchCity(document.querySelector("#enter-city").value);
 }
 
-//is called when #actual-location is clicked
+//is called when #user-location is clicked
 function showPosition(position) {
-  let apiKey = `57821c3b75b60c68ecd1a8d0dd1aa8d3`;
+  let apiKey = `8402ccd9e55983fce71eeeaa1d2bd1fc`;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(`${apiURL}`).then(showSearchedCity);
 }
@@ -150,13 +132,48 @@ function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-searchCity("Ankara");
+function badDims() {
+  var c = document.getElementById('wordcloud-canvas');
+  c.width = 170;
+  c.height = 75;
+  startRes();
+}
+
+window.addEventListener('load', function() {
+  startRes();
+}, false);
+function startRes() {
+  TagCanvas.Start('wordcloud-canvas', 'wordcloud-cities', {
+    fadeIn:0,
+    textColour: '#ffff',
+    textHeight: 45,
+    maxSpeed: 0.03,
+    minBrightness: 0.2,
+    depth: 0.5,
+    pulsateTo: 0.6,
+    initial: [0.03,-0.03],
+    decel: 0.98,
+    reverse: true,
+    imageScale: null,
+    fadeIn: 1000,
+    clickToFront: 600,
+    pulsateTo: 0.2,
+    pulsateTime: 0.5,
+    outlineMethod: 'none',
+    outlineColour: 'none',
+    lock: 'x',
+    shape: 'hcylinder',
+    radiusX: 2.5,
+    wheelZoom: 0,
+    decel: 0.9
+  });
+}
+
+searchCity("Moscow");
 
 document.querySelector(`#user-input`).addEventListener(`submit`, display_city);
 document.querySelector(`#search-input`).addEventListener(`click`, display_city);
-document.querySelector(`#actual-location`).addEventListener(`click`, getCurrentLocation);
-
-document.querySelector(`#fahrenheit`).addEventListener(`click`, searchFahrenheit);
-document.querySelector(`#celcius`).addEventListener(`click`, searchCelcius);
-
+document.querySelector(`#user-location`).addEventListener(`click`, getCurrentLocation);
+document.querySelector(`#fahrenheit`).addEventListener(`click`, getTempF);
+document.querySelector(`#celcius`).addEventListener(`click`, getTempC); 
 
