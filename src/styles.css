@@ -10,10 +10,16 @@
   display:block;
 }
 
-#regular-website{
- 
+#regular-website{ 
   display: none;
+  opacity:0%;
+  animation: fade 3s forwards;
 }
+
+@keyframes fade {
+    from { opacity:0%;}
+    to { opacity:100%;}}
+
 
 @media (max-device-width:1300px) {
   .regular-website{
@@ -286,6 +292,12 @@ p.content-precipitation {
   font-family: "Merriweather Sans", sans-serif;
   font-weight: 700;
   color: #faffff;
+  opacity:0.4
+}
+
+#celcius:hover, #fahrenheit:hover {
+  opacity:0.9;
+  color: #042525;
 }
 
 button.fahrenheit {
