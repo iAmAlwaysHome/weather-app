@@ -13,7 +13,7 @@
 #regular-website{ 
   display: none;
   opacity:0%;
-  animation: fade-in 3s forwards;
+  animation: fade-in 2s forwards;
 }
 
 @keyframes fade-in {
@@ -382,6 +382,3 @@ body{
     from { opacity:100%;}
     to { opacity:0%;}}
 
-    body:not(.loaded) #slider img {
-      display:none;
-    }
