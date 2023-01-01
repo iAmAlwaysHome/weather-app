@@ -153,7 +153,7 @@ function getCurrentLocation() {
 
 
 setInterval(formatDate(new Date()), 1000);
-//searchCity("Ankara");
+searchCity("Ankara");
 
 document.querySelector(`#user-input`).addEventListener(`submit`, display_city);
 document.querySelector(`#search-input`).addEventListener(`click`, display_city);
@@ -161,3 +161,5 @@ document.querySelector(`#actual-location`).addEventListener(`click`, getCurrentL
 
 document.querySelector(`#fahrenheit`).addEventListener(`click`, searchFahrenheit);
 document.querySelector(`#celcius`).addEventListener(`click`, searchCelcius);
+
+

@@ -26,7 +26,9 @@
     <div class="row scene" >
        
         <!--Left menu-->
-      <div class="col-6">
+      <div class="col-6" id="menu">
+        
+  
         
       <div class="text-center p-2 today-date">
           <h3 class="today-date" id="date"></h3>
@@ -71,79 +73,80 @@
         </div>
       </form>
             
+      <div class="row f-c-but">
+        <div class="col-2 ">
+          <button class="btn btn-lg btn-outline-light celsius-fahrenheit" type="button" id="celcius"> &degC</button>
+          <button class="btn btn-lg btn-outline-light celsius-fahrenheit" type="button" id="fahrenheit"> &degF</button>
+        </div>              
+      </div>  
+      
       </div> 
   
       <!--The weather app-->
       <div class="col-6 weather-app" >    
         
-         <!--Right side - City + weather description-->
+         <!--Right side - Temp C/F + wind + humidity -->
         <div class="container" id="right-side-container">
           
           <div class="row g-2 rotation-right" id="right-side" >        
-            <div class="col-6"></div>        
+            <div class="col-6"></div>    
+            
+            
             <div class="col-6 right-side-text">
               
-              <div class="text-center">
-                <h1 class="title-city" id="show-city">Sorry! :(</h1>
-              </div>
-              <div class="col-9 text-center icon-weather">
-                <i class="fas fa-sun icon-weather" id="icon-weather"></i>
-              </div>
-              <div class="row g-2">
-                <div class="col-5"></div>
-                <div class="col-8 text-center rotate-text description-text" id="description-text">
-                  <h4 class="description text-center" id="description-weather">API is down</h4>
+              <div class="col-5">              
+                  <div class="p-6 text-center">
+                    <h1 class="temperature-number" id="temperature-grade"> <span class="temperature-number" id="grade">11</span>&degC </h1>
+                  </div>
+              </div>           
+              
+              <div class="col-6"></div>
+              <div class="col-2"></div>
+              
+              <div class="col-6">
+                <div class="relative-pos">
+                  <div class="text-center details-temp">
+                    <p>
+                      <i class="fas fa-tint detail-icon" id="humid-icon"></i><span class="percentage" id="humidity">90%</span>
+                      <i class="fas fa-wind detail-icon" id="wind-icon"></i><span class="percentage" id="wind">8 km/h</span>
+                    </p>
+                  </div>
                 </div>
               </div>
               
+              
+              
             </div>
+            <div class="col-6"> <h1 class="text-center title-city" id="show-city">Sorry! :(</h1></div>       
           </div>
           
         </div>
 
-        <!--Floor and Left side - Temp C/F + wind + humidity + Forecast-->
+        <!--Floor and Left side -  City + weather description + Forecast-->
         <div class="row g-2">   
           
           <div class="col-12">   
                   
             
-            <!--Left side - Temp C/F + wind + humidity-->
-            <div class="row g-3" id="left-side">
-            
-              <div class="col-2"></div>
+            <!--Left side - City + weather description-->
+            <div class="row g-3" id="left-side">            
+             
+   
               
-              <div class="col-10 left-side-text" >      
+              <div class="col-10 iso-box-left-side" >     
                 
-                <div class="col-5">
-                  <div class="relative-pos">
-                    <div class="p-6 text-center">
-                      <h1 class="temperature-number" id="temperature-grade">
-                        <span class="temperature-number" id="grade">11</span>&degC
-                      </h1>
-                    </div>
-                  </div>
-                </div>           
+                <div class="left-side-text">         
                 
-                <div class="col-6"></div>
-                <div class="col-2"></div>
-                <div class="col-5">
-                  <div class="relative-pos">
-                    <div class="text-center details-temp">
-                      <p>
-                        <i class="fas fa-tint detail-icon" id="humid-icon"></i><span class="percentage" id="humidity">90%</span>
-                        <i class="fas fa-wind detail-icon" id="wind-icon"></i><span class="percentage" id="wind">8 km/h</span>
-                      </p>
-                    </div>
-                  </div>
+                    <div class="col icon-weather"> <i class="fas fa-sun icon-weather" id="icon-weather"></i> </div>
+                                        
+                    <div class="row  weather-description"> 
+                      
+                      <div class="col-6 description-text" id="description-text"> <h4 class="description" id="description-weather">API err</h4> </div>   
+                                          
+                    </div>       
+                    
                 </div>
                 
-              
-                <div class="row g-2">
-                  <div class="col-1 text-center">
-                    <button class="btn btn-lg btn-outline-light celsius-fahrenheit" type="button" id="celcius"> &degC</button>
-                    <button class="btn btn-lg btn-outline-light celsius-fahrenheit" type="button" id="fahrenheit"> &degF</button>
-                  </div>              
-                </div>
               </div>
               
             </div>

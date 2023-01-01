@@ -105,12 +105,6 @@ button.actual-location {
   border-radius: 30px;
 }
 
-button.music {
-  position: relative;
-  margin-left: 5rem;
-  border-radius: 30px;
-}
-
 div.temp-up {
   position: relative;
   top: -4rem;
@@ -125,15 +119,12 @@ div.date-down {
   top: 4rem;
 }
 
-div.move-content-up {
-
-}
-
 #right-side{
   position: relative; 
-  left:-350px;
+  left:-50px;
   bottom:75px;
   width:1500px;
+  /* background-color: #00d2ff; */
 }
 
 #floor{
@@ -141,29 +132,29 @@ div.move-content-up {
   top:100px;
  }
 
-div.right-side-text {
-  position: relative; 
-  left:150px;
+div.right-side-text { 
+  position:relative;
+  right:200px;
   zoom:75%
 }
 
 h1.title-city {
-  display: inline-block;
   position: relative;
-  top:130px;
-  right:70px;
+  transform: rotateZ(-1.5deg);
+  top:100px;
+  left:460px;
   border-radius: 20px;
   margin-left: 6rem;
   text-transform: uppercase;
-  padding: 2rem;
+  padding: 15px;
   font-family: "Merriweather Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 3px;
-  font-size: 50px;
-  color: #a1ccf4;
-  background-color: #faffff;
+  font-size: 60px;
+  color: #77b9f6;
+  background-color: rgb(250, 255, 255, 0.9);
   box-shadow: 1px 1px 0 1px #f9f9fb, 5px 0 4px 0 rgb(34 33 81 / 20%),
-    18px -12px 0px rgb(157, 205, 250);
+    12px -10px 0px rgb(157, 205, 250);
 }
 
 h3.today-date {
@@ -183,6 +174,7 @@ i.detail-icon {
 div.today-date {
   border-radius: 10px;
   background-color: none;
+
 }
 
 div.color-forecast-cell {
@@ -199,24 +191,18 @@ div.moving-main-icon {
 }
 
 h4.description {
-  font-size: 40px;
-  color: #a4d4ff;
-  padding: 1rem;
+  font-size: 240px;
+  color: rgb(164, 212, 255, 0.1);
   text-transform: capitalize;
 
 }
 
 div.description-text {
-  border-radius: 20px;  
-  padding: 0.5rem;
+  display:inline;
   width: max-content;
-  height:350px;
-}
-
-#description-weather{
   position:relative;
-  top:120px;
-  right:100px;
+  bottom: 290px;
+  left:180px;
 }
 
 h1.temperature-number {
@@ -239,14 +225,15 @@ div.relative-pos {
 
 #left-side{
   position: relative;
-  width:990px;
+  width:1990px;
   height:500px;
-  top:120px;
-  transform: rotateX(345deg) rotateY(50deg) rotateZ(-2deg);
+  top:380px;
+  right:440px;
+  transform: rotateX(348deg) rotateY(50deg) rotateZ(-2deg);
   margin-top: -32rem;
   margin-bottom: 1rem;
   position: relative;
-
+  /*background-color: rgb(202, 101, 236, 0.2);*/
 }
 
 h5.day {
@@ -306,12 +293,11 @@ p.five-days {
 }
 
 #icon-weather {
-  font-size: 168px;
-  margin: 4rem 0 4rem 8rem;
+  font-size: 328px;
   position: relative;
-  top:180px;
-  left:40px;
-  color: #faffff;
+  top:50px;
+  left:650px;
+  color: rgb(250, 255, 255, 0.8);
 }
 
 div.main-card-temperature {
@@ -330,8 +316,9 @@ div.main-temperature {
   width: 1300px;
   height:570px;
   position:relative;
-  top:195px;
+  top:495px;
   transform: rotateX(0deg) rotateY(-50deg) rotateZ(-3.5deg);
+  
 }
 
 div.date {
@@ -373,8 +360,6 @@ div.main-precipitation {
   transform: rotateX(20deg) rotateY(-45deg);
 }
 
-
-
 p.content-precipitation {
   font-size: 30px;
 }
@@ -386,6 +371,8 @@ button.celsius-fahrenheit {
   font-family: "Merriweather Sans", sans-serif;
   font-weight: 700;
   color: #faffff;
+  zoom:70%;
+
 }
 
 button.fahrenheit {
@@ -394,6 +381,7 @@ button.fahrenheit {
   width: 5rem;
   font-size: 30px;
   transform: rotateX(20deg) rotateY(-45deg);
+  
 }
 
 div.container-creator {
@@ -412,21 +400,59 @@ p.created-by {
   position:relative; 
   left:60px;
   bottom:130px;
-  
+
 }
 
 .scene{  
   zoom:80%;
 }
 
-.left-side-text{
-  position:relative;
-  left:200px;
-  top:280px;
+.iso-box-left-side{
+  position: relative;
+  left:530px;
+  top:140px;
   zoom:65%;
 
 }
 
 #forecastCell{
   color:white
+}
+
+.f-c-but{
+  position:relative;
+  left:800px;
+  bottom:50px;
+}
+
+#menu{
+  position:relative;
+  top:300px;
+}
+
+svg {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  width: 2560px;
+  height: 300px;
+  top: 50%;
+  margin-left: -1280px;
+  margin-top: -150px;
+}
+
+.left-side-text{
+  position:relative;
+  bottom: 270px;
+}
+
+#show-city{
+  display:inline;
+}
+
+.weather-description{
+  position:relative;
+  top:250px;
+  transform:rotateZ(-2deg);
+  left:160px;
 }
