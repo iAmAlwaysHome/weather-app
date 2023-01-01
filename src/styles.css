@@ -28,11 +28,7 @@
   .small-website{
     display:block;
   }
-  
-  * {
-    border: 0px;
-    margin-bottom: 0;
-  }
+
 }
 
 /*
@@ -350,28 +346,18 @@ body{
 }
 
 .video-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%; 
-  overflow: hidden;
+
 }
 .video-container video {
-  min-width: 100%; 
-  min-height: 100%; 
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
-.video-container{
-  background-size:100%;
-  height:100%
-}
 
 #starting-screen{
   position:relative;
