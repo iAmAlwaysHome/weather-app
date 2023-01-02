@@ -13,7 +13,7 @@
 #regular-website{ 
   display: none;
   opacity:0%;
-  animation: fade-in 2s forwards;
+  animation: fade-in 3s forwards;
 }
 
 @keyframes fade-in {
