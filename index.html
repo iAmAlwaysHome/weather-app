@@ -1,153 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width">
-  <title>Weather</title>
-  
-  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/0dcbce5e8a.js" crossorigin="anonymous"></script>
-  
-  <link rel="stylesheet" href="src/styles.css" class="css"> 
-  
- </head>
- 
- 
- <body id="body" onload="load()">
-  
-  <div id="small-website">
-    
-    <div class="video-container">
-
-      <video autoplay loop muted playsinline>
-          <source src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&amp;profile_id=175" type="video/mp4"
-          poster="https://www.kimiaviation.com/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg"/>  </video>     </div>  </div>
-  
-  <div id="regular-website">        
-  <div class="row">       
-    
-    <!--Isometric-box-right-side: city, icon, weather description-->
-    <!--Isometric-box-left-side and floor: temp hum wind C/F  and forecast-->
-    <div class="col-8">
-      
-   <!--Isometric-box-right-side: city, icon, weather description-->
-   <div class="container" style:"max-width: 1000px;">
-    <div class="row g-2" style="position: relative; left:-42px; margin-top: 10rem; transform: rotateX(30deg) rotateY(54deg);">
-     <div class="col-6"></div>
-     <div class="col-6" style="position:relative; left:60px; bottom: 50px;">
-      
-      
-      <div class="col-9 text-center">  <i class="fas fa-cloud-rain" id="weather-icon"></i> </div>
-      <div class="row g-2"> <div class="col-3"></div>  
-      <div class="col-8 " id="description-block">  <h4 id="description-text">Sorry!</h4> </div></div>
-      <div class="text-center" > <h1 id="displayed-city-name">API is down</h1> </div>
-      
-     </div>
-    </div>
-   </div>
-   
-   <!--Isometric-box-left-side and floor: temp hum wind C/F  and forecast-->
-   <div class="row g-2">
-    <div class="col-12">
-      
-      <!--Isometric-box-left-side and floor: temp hum wind C/F-->
-      <div class="container" style="max-width: 100rem; margin-top: -32rem;  margin-bottom: 1rem; position: relative;">
-        <div class="row g-3" style="  position: relative; transform: rotateX(345deg) rotateY(53deg);">
-        
-          <div class="col-2"></div>       
-          <div class="col-10">          
-            <!--Date-->  
-            <div class="col-5"> <div class="text-center p-2" style="border-radius: 10px; background-color: none;">  <h3 id="date">API limit reached</h3>  </div> </div>   
-            <!--temp--> 
-            <div class="col-5">  <div class="p-6 text-center" style="position: relative;"> <h1 id="today-temp">Error</h1></div>  </div>          
-            <!--hum wind-->  
-            <div class="col-5"> 
-              <div class="text-center" style="position:relative; font-size: 35px;">
-              <p> <i class="fas fa-tint" id="humid-icon"></i> <span id="humidity"> NaN </span>
-                <i class="fas fa-wind" id="wind-icon"></i> <span id="wind">NaN</span> </p> </div> </div>
-            
-            <!--C/F --> 
-            <div class="row g-2">          
-            <div class="col-5 text-center">
-              <button class="btn btn-lg btn-outline-light " type="button" id="celcius"> &degC </button>
-              <button class="btn btn-lg btn-outline-light " type="button" id="fahrenheit"> &degF </button> </div> </div>        
-          </div>       
-        </div>      
-      </div> 
-         
-      <!--Forecast-->
-      <div class="row">
-        
-        <div class="col-3"></div>        
-        <div class="col-6">
-          <div class="container-fluid" id="forecastCells">
-            
-            <div class="row">
-                      
-              <div class="col-4 "> <div class="p-3 text-center  forecast-cell">
-                  <h5 id="one">MON</h5> <i class="fas fa-cloud icon " id="forecastIcon"></i> <p  id="max"> <strong>NaN</strong></p> </div></div>
-                  
-              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
-                  <h5  id="one">TUE</h5> <i class="fas fa-cloud icon" id="forecastIcon"></i>  <p  id="max"> <strong>NaN</strong></p> </div> </div>
-                  
-              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
-                  <h5  id="one">WED</h5> <i class="fas fa-cloud icon" id="forecastIcon"></i> <p  id="max"> <strong>NaN</strong></p> </div> </div>
-  
-          
-            <div class="row" >
-              
-              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
-                  <h5  id="one">THU</h5> <i class="fas  fa-cloud icon" id="forecastIcon" ></i>  <p  id="max"> <strong>NaN</strong></p> </div> </div>
-                  
-              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
-                  <h5  id="one">FRI</h5> <i class="fas  fa-cloud icon" id="forecastIcon"></i> <p  id="max"> <strong>NaN</strong> </p> </div> </div>
-              
-              <div class="col-4"> <div class="p-3 text-center  forecast-cell">
-                  <h5  id="one">SAT</h5> <i class="fas fa-cloud icon" id="forecastIcon"></i> <p  id="max"> <strong>NaN</strong></p>  </div>  </div> 
-                
-          </div> </div> </div> </div> </div> </div> </div> </div>    
-          
-    <div class="col-1 "></div>
-     
-    <div class="col-3 ">
-      <div class="container hide-for-small-website ">
-     
-    
-     
-        <div class="row">
-      <form id="user-input" >
-        <div class="container" style=" padding-bottom: 20rem; zoom:2.0; width: max-content;">
-         <div class="row content" style="position: relative;  top: 15rem; right: 20rem;  margin-bottom: 2rem; ">
-          <div class="col-5 user-input" style="width: max-content;">
-           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter a city! :)" id="enter-city">
-            <div class="input-group-append">
-             <button class="btn btn-lg btn-outline-light btn-search" type="button" id="search-input"> <i class="fas fa-search-location location"></i></button>
-            </div>
-            <div class="col-sm">
-             <button class="btn btn-lg btn-outline-light user-location" type="button" id="user-location"> <i class="fas fa-street-view local"></i></button>
-            </div>
-            
-           </div>  
-           <a  href="https://github.com/Vfdxyr6d5dtd/sc-plus-7" target="_blank""  ><i class="fa-brands fa-github"></i>  Source code</a>
-          </div>
-         </div>
-        </div>
-       </form>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Weather</title>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0dcbce5e8a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="src/styles.css" class="css">
+  </head>
+  <body id="body" onload="load()">
+    <div class="desktop">
+      <div class="video-container">
+        <video autoplay loop muted playsinline>
+          <source src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&amp;profile_id=175" type="video/mp4" poster="https://www.kimiaviation.com/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg" />
+        </video>
       </div>
-       
-     
-     
+      <div id="regular-website">
+        <div class="row">
+          <div class="col-8">
+            <div class="container right-side-plane">
+              <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 right-side-content">
+                  <div class="text-center">
+                    <i class="fas fa-cloud-rain" id="weather-icon"></i>
+                  </div>
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-8 " id="description-block">
+                      <h4 id="description-text">Please</h4>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <h1 id="displayed-city-name">wait</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="container left-side-plane">
+                  <div class="row g-3 left-side-content">
+                    <div class="col-2"></div>
+                    <div class="col-10 text-center">
+                      <div class="col-5 p-2">
+                        <h3 id="date">Loading API</h3>
+                      </div>
+                      <div class="col-5 p-6">
+                        <h1 id="today-temp">...</h1>
+                      </div>
+                      <div class="col-5">
+                        <p>
+                          <i class="fas fa-tint" id="humid-icon"></i>
+                          <span id="humidity">...</span>
+                          <i class="fas fa-wind" id="wind-icon"></i>
+                          <span id="wind">...</span>
+                        </p>
+                      </div>
+                      <div class="row">
+                        <div class="col-5">
+                          <button class="btn btn-lg btn-outline-light " type="button" id="celcius"> &degC </button>
+                          <button class="btn btn-lg btn-outline-light " type="button" id="fahrenheit"> &degF </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-3"></div>
+                  <div class="col-6">
+                    <div class="container-fluid" id="forecastCells">
+                      <div class="row">
+                        <div class="col-4 ">
+                          <div class="p-3 text-center forecast-cell">
+                            <h5 class="cell-day">MON</h5>
+                            <i class="fas fa-cloud icon " id="forecastIcon"></i>
+                            <p id="max">
+                              <strong>...</strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="p-3 text-center  forecast-cell">
+                            <h5 class="cell-day">TUE</h5>
+                            <i class="fas fa-cloud icon" id="forecastIcon"></i>
+                            <p id="max">
+                              <strong>...</strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="p-3 text-center  forecast-cell">
+                            <h5 class="cell-day">WED</h5>
+                            <i class="fas fa-cloud icon" id="forecastIcon"></i>
+                            <p id="max">
+                              <strong>...</strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="p-3 text-center  forecast-cell">
+                            <h5 class="cell-day">THU</h5>
+                            <i class="fas  fa-cloud icon" id="forecastIcon"></i>
+                            <p id="max">
+                              <strong>...</strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="p-3 text-center  forecast-cell">
+                            <h5 class="cell-day">FRI</h5>
+                            <i class="fas  fa-cloud icon" id="forecastIcon"></i>
+                            <p id="max">
+                              <strong>...</strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="p-3 text-center  forecast-cell">
+                            <h5 class="cell-day">SAT</h5>
+                            <i class="fas fa-cloud icon" id="forecastIcon"></i>
+                            <p id="max">
+                              <strong>...</strong>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-1 "></div>
+          <div class="col-3 ">
+            <div class="container">
+              <div class="row">
+                <form id="user-input">
+                  <div class="container form-container">
+                    <div class="row content">
+                      <div class="col-5 ">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Enter a city! :)" id="enter-city">
+                          <div class="input-group-append">
+                            <button class="btn btn-lg btn-outline-light btn-search" type="button" id="search-input">
+                              <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                          </div>
+                          <div class="col-sm">
+                            <button class="btn btn-lg btn-outline-light user-location" type="button" id="user-location">
+                             <i class="fa-solid fa-map-location-dot"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <a href="https://github.com/Vfdxyr6d5dtd/sc-plus-7" target="_blank"class="github" >
+																			<i class=" fa-brands fa-github"></i> source code </a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div> 
-    
-  </div>
-</div>
-  
-  <script src='https://www.goat1000.com/tagcanvas.min.js'></script>
-  <script src="src/index.js"></script>
-  
- </body>
+    <div class="mobile">
+      <div class="video-container">
+        <video autoplay loop muted playsinline>
+          <source src="https://player.vimeo.com/external/563130035.hd.mp4?s=5bd311f698519ffa90aa5136b96d1e86aa78d107&amp;profile_id=175" type="video/mp4" poster="https://www.kimiaviation.com/thumbs/1800x1170/gfx/Kimi_seamless_video_first_frame.jpg" />
+        </video>
+      </div>
+      <div id="regular-website2">
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <form id="user-input2">
+                <div class="container form-container2">
+                  <div class="row content">
+                    <div class="col-5"></div>
+                    <div class="col-7">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter a city! :)" id="enter-city2">
+                        <div class="input-group-append">
+                          <button class="btn btn-lg btn-outline-light btn-search" type="button" id="search-input2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                          </button>
+                        </div>
+                        <div class="col-sm">
+                          <button class="btn btn-lg btn-outline-light user-location" type="button" id="user-location2">
+                           <i class="fa-solid fa-map-location-dot"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <a href="https://github.com/Vfdxyr6d5dtd/sc-plus-7" target="_blank" class="github" >
+																			<i class=" fa-brands fa-github"></i> source code </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="container right-side-plane">
+                <div class="row">
+                  <div class="col-6"></div>
+                  <div class="col-6 right-side-content ">
+                    <div class="text-center">
+                      <i class="fas fa-cloud-rain" id="weather-icon2"></i>
+                    </div>
+                    <div class="col-8 " id="description-block2">
+                      <h4 id="description-text2">Please</h4>
+                    </div>
+                    <div class="text-center">
+                      <h1 id="displayed-city-name2">wait</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="container left-side-plane">
+                    <div class="row g-3 left-side-content">
+                      <div class="col-2"></div>
+                      <div class="col-10 text-center">
+                        <div class="col-5 p-2">
+                          <h3 id="date2">Loading API</h3>
+                        </div>
+                        <div class="col-5 p-6">
+                          <h1 id="today-temp2">...</h1>
+                        </div>
+                        <div class="col-5">
+                          <p>
+                            <i class="fas fa-tint" id="humid-icon2"></i>
+                            <span id="humidity2">...</span>
+                            <i class="fas fa-wind" id="wind-icon2"></i>
+                            <span id="wind2">...</span>
+                          </p>
+                        </div>
+                        <div class="row">
+                          <div class="col-5">
+                            <button class="btn btn-lg btn-outline-light " type="button" id="celcius2"> &degC </button>
+                            <button class="btn btn-lg btn-outline-light " type="button" id="fahrenheit2"> &degF </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                      <div class="container-fluid" id="forecastCells2">
+                        <div class="row">
+                          <div class="col-4 ">
+                            <div class="p-3 text-center forecast-cell">
+                              <h5 class="cell-day">MON</h5>
+                              <i class="fas fa-cloud icon " id="forecastIcon2"></i>
+                              <p id="max">
+                                <strong>...</strong>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="p-3 text-center  forecast-cell">
+                              <h5 class="cell-day">TUE</h5>
+                              <i class="fas fa-cloud icon" id="forecastIcon2"></i>
+                              <p id="max">
+                                <strong>...</strong>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="p-3 text-center  forecast-cell">
+                              <h5 class="cell-day">WED</h5>
+                              <i class="fas fa-cloud icon" id="forecastIcon2"></i>
+                              <p id="max">
+                                <strong>...</strong>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="p-3 text-center  forecast-cell">
+                              <h5 class="cell-day">THU</h5>
+                              <i class="fas  fa-cloud icon" id="forecastIcon2"></i>
+                              <p id="max">
+                                <strong>...</strong>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="p-3 text-center  forecast-cell">
+                              <h5 class="cell-day">FRI</h5>
+                              <i class="fas  fa-cloud icon" id="forecastIcon2"></i>
+                              <p id="max">
+                                <strong>...</strong>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="p-3 text-center  forecast-cell">
+                              <h5 class="cell-day">SAT</h5>
+                              <i class="fas fa-cloud icon" id="forecastIcon2"></i>
+                              <p id="max">
+                                <strong>...</strong>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='https://www.goat1000.com/tagcanvas.min.js'></script>
+    <script src="src/index.js"></script>
+  </body>
 </html>
