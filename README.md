@@ -13,5 +13,5 @@ The Weather web app was created to practice API usage. To make my weather dashbo
 - Displays real time.
 - Data is displayed isometrically on top of a looped video background.
 
-# <a href="https://gleeful-croissant-438e0b.netlify.app/" target="_blank">See it live</a>
-![screen1](  https://i.ibb.co/LZSWBBG/Screenshot-from-2023-01-08-13-19-50.png "weatherapp_page1")
+# <a href="https://weather.iamalwayshome.com/" target="_blank">See it live</a>
+![screen1](https://i.ibb.co/LZSWBBG/Screenshot-from-2023-01-08-13-19-50.png "weatherapp_page1")
